@@ -26,7 +26,7 @@ from spack import *
 import subprocess
 
 
-class JupyterNotebook(Package):
+class PyJupyterNotebook(Package):
     """A web application that allows you to create and share documents that contain live code, 
     equations, visualizations and explanatory text. Uses include: data cleaning and 
     transformation, numerical simulation, statistical modeling, machine learning and much more."""
@@ -34,13 +34,18 @@ class JupyterNotebook(Package):
     homepage = "http://jupyter.org/"
     url      = "https://github.com/jupyter/notebook/archive/4.2.1.tar.gz"
 
-    version('4.2.1', '2b222d9edebbf095ba8125162a5d6530edeef80a')
+    version('4.2.1', '4286f1eaf608257bd69cad4042c7c2fe')
+    version('4.2.0', '136be6b72fe9db7f0269dc7fa5652a62')
+    version('4.1.0', '763ab54b3fc69f6225b9659b6994e756')
+    version('4.0.6', 'd70d8a6d01893f4b64df9edbc0e13b52')
     
     variant('ipython',     default=True, description='Enable ipython support')
     #variant('ipywidgets',  default=False,  description='Enable with support')
     #variant('ipyparallel', default=False,  description='Enable with support')
 
+    # (Anecdotal) List of sources required to install Jupyer:
     # http://simnotes.github.io/blog/installing-jupyter-on-hdp-2.3.2/
+    # 
     
     def cmd_exists(cmd):
       try:
@@ -53,25 +58,26 @@ class JupyterNotebook(Package):
         depends_on('node-js',   type='build')
         depends_on('npm',       type='build')
 
-    depends_on('python@2.7:2.8,3.3:', type='build')
-    depends_on('py-setuptools',   type='build')
+    extends('python@2.7:2.8,3.3:')
+    depends_on('py-setuptools',       type='build')
+    depends_on('py-ipython',          when="+ipython")
+    # depends_on('py-ipyparallel',      when="+ipyparallel")
+    # depends_on('py-ipywidgets',       when="+ipywidgets")
+    depends_on('py-jinja2')
+    depends_on('py-jsonschema')
+    depends_on('py-jupyter_core')
+    depends_on('py-matplotlib')
     depends_on('py-numpy')
-    depends_on('py-scipy')
     depends_on('py-pandas')
+    depends_on('py-pygments')
+    depends_on('py-scipy')
     depends_on('py-scikit-learn')
     depends_on('py-tornado')
     depends_on('py-zmq')
-    depends_on('py-pygments')
-    depends_on('py-matplotlib')
-    depends_on('py-jinja2')
-    depends_on('py-jsonschema')
-    depends_on('py-ipython',      when="+ipython")
-    #depends_on('py-ipywidgets',   when="+ipywidgets")
-    #depends_on('py-ipyparallel',  when="+ipyparallel")
     
-    # Unfortunately either bower (preferred) or npm must be used to install
+    # Unfortunately either bower (preferred?) or npm must be used to install
     # the remaining dependencies. If bower is in path, this is automatically
-    # invoked from within the setup script. But we will just use npm to do
-    # it manually, just in case Bower is not present on the system...
+    # invoked from within the setup script. But as a fall-back npm is installed
+    # and will be called if Bower is not present on the system...
     def install(self, spec, prefix):
       python('setup.py', 'install', '--prefix={0}'.format(prefix))
