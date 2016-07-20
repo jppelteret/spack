@@ -34,7 +34,7 @@ class PyZmq(Package):
     version('14.7.0', 'bf304fb73d72aee314ff82d3554328c179938ecf')
 
     extends('python')
-    depends_on('py-setuptools')
+    depends_on('py-setuptools', type='build')
     depends_on('py-cython')
     depends_on('zeromq')
 

@@ -35,7 +35,7 @@ class PyVcversioner(Package):
     version('2.16.0.0', 'aab6ef5e0cf8614a1b1140ed5b7f107d')
 
     extends('python')
-    depends_on('py-setuptools')
+    depends_on('py-setuptools', type='build')
 
     def install(self, spec, prefix):
         python('setup.py', 'install', '--prefix={0}'.format(prefix))

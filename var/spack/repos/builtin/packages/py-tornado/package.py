@@ -31,10 +31,10 @@ class PyTornado(Package):
     # base https://pypi.python.org/pypi/tornado/
     url      = "https://github.com/tornadoweb/tornado/archive/v4.4.0.tar.gz"
 
-    version('4.0.0', 'c28675e944f364ee96dda3a8d2527a87ed28cfa3')
+    version('4.4.0', 'c28675e944f364ee96dda3a8d2527a87ed28cfa3')
 
     extends('python')
-    depends_on('py-setuptools')
+    depends_on('py-setuptools', type='build')
     depends_on('py-backports-abc')
     depends_on('py-certifi')
 

@@ -34,7 +34,7 @@ class PyBackportsAbc(Package):
     version('0.4', 'e4246ae689221c9cbe84369fdb59e8c74d02b298')
 
     extends('python')
-    depends_on('py-setuptools')
+    depends_on('py-setuptools', type='build')
 
     def install(self, spec, prefix):
         python('setup.py', 'install', '--prefix={0}'.format(prefix))

@@ -35,7 +35,7 @@ class PyJsonschema(Package):
     version('2.5.1', '374e848fdb69a3ce8b7e778b47c30640')
 
     extends('python')
-    depends_on('py-setuptools')
+    depends_on('py-setuptools', type='build')
     depends_on('py-vcversioner')
     depends_on('py-functools32')
 

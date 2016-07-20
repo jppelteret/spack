@@ -48,12 +48,13 @@ class JupyterNotebook(Package):
           return True
       except subprocess.CalledProcessError as ex:
           return False
-    
-    depends_on('python',        type='build') # 2.7 or >=3.3
-    depends_on('py-setuptools', type='build')
+
     if (cmd_exists("bower") == False & cmd_exists("npm") == False & cmd_exists("node") == False):
         depends_on('node-js',   type='build')
         depends_on('npm',       type='build')
+
+    depends_on('python',        type='build') # Needs to be 2.7 or >=3.3
+    depends_on('py-setuptools', type='build')
     depends_on('py-numpy')
     depends_on('py-scipy')
     depends_on('py-pandas')
