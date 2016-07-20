@@ -53,8 +53,8 @@ class JupyterNotebook(Package):
         depends_on('node-js',   type='build')
         depends_on('npm',       type='build')
 
-    depends_on('python',        type='build') # Needs to be 2.7 or >=3.3
-    depends_on('py-setuptools', type='build')
+    depends_on('python@2.7:2.8,3.3:', type='build')
+    depends_on('py-setuptools',   type='build')
     depends_on('py-numpy')
     depends_on('py-scipy')
     depends_on('py-pandas')
