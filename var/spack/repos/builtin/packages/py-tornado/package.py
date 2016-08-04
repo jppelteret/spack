@@ -26,7 +26,8 @@ from spack import *
 
 
 class PyTornado(Package):
-    """Tornado is a Python web framework and asynchronous networking library."""
+    """Tornado is a Python web framework and asynchronous networking
+    library."""
     homepage = "https://github.com/tornadoweb/tornado"
     # base https://pypi.python.org/pypi/tornado/
     url      = "https://github.com/tornadoweb/tornado/archive/v4.4.0.tar.gz"

@@ -26,7 +26,8 @@ from spack import *
 
 
 class PyFunctools32(Package):
-    """Backport of the functools module from Python 3.2.3 for use on 2.7 and PyPy."""
+    """Backport of the functools module from Python 3.2.3 for use on 2.7 and
+    PyPy."""
 
     homepage = "https://github.com/MiCHiLU/python-functools32"
     # base https://pypi.python.org/pypi/functools32

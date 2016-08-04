@@ -26,7 +26,8 @@ from spack import *
 
 
 class PyBackportsAbc(Package):
-    """Backports_ABC: A backport of recent additions to the 'collections.abc' module."""
+    """Backports_ABC: A backport of recent additions to the 'collections.abc'
+    module."""
     homepage = "https://github.com/cython/backports_abc"
     # base https://pypi.python.org/pypi/backports_abc/
     url      = "https://github.com/cython/backports_abc/archive/0.4.tar.gz"

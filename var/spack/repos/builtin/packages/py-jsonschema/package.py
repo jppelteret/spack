@@ -27,7 +27,7 @@ from spack import *
 
 class PyJsonschema(Package):
     """Jsonschema: An(other) implementation of JSON Schema for Python."""
-    
+
     homepage = "http://github.com/Julian/jsonschema"
     # base https://pypi.python.org/pypi/jsonschema
     url      = "https://pypi.python.org/packages/source/j/jsonschema/jsonschema-2.5.1.tar.gz"

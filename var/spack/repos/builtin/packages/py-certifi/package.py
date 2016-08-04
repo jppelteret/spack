@@ -26,8 +26,9 @@ from spack import *
 
 
 class PyCertifi(Package):
-    """Certifi: A carefully curated collection of Root Certificates for validating 
-    the trustworthiness of SSL certificates while verifying the identity of TLS hosts."""
+    """Certifi: A carefully curated collection of Root Certificates for validating
+    the trustworthiness of SSL certificates while verifying the identity of TLS
+    hosts."""
     homepage = "https://github.com/certifi/python-certifi"
     # base https://pypi.python.org/pypi/certifi/
     url      = "https://github.com/certifi/python-certifi/archive/2016.02.28.tar.gz"
