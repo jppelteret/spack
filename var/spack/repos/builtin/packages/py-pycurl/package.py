@@ -26,7 +26,7 @@ from spack import *
 
 
 class PyPycurl(Package):
-    """PycURL is a Python interface to libcurl. PycURL can be used to fetch 
+    """PycURL is a Python interface to libcurl. PycURL can be used to fetch
     objects identified by a URL from a Python program."""
 
     homepage = "http://pycurl.io/"
@@ -36,7 +36,7 @@ class PyPycurl(Package):
 
     extends('python')
     depends_on('py-setuptools', type='build')
-    #depends_on('curl')
+    depends_on('curl')
 
     def install(self, spec, prefix):
         python('setup.py', 'install', '--prefix={0}'.format(prefix))
