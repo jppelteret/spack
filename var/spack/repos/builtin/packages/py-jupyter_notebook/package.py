@@ -41,8 +41,8 @@ class PyJupyterNotebook(Package):
     version('4.0.6', 'd70d8a6d01893f4b64df9edbc0e13b52')
 
     variant('ipython',         default=True, description='Enable ipython support')
-    # variant('ipywidgets',     default=False,  description='Enable with support')
-    # variant('ipyparallel',    default=False,  description='Enable with support')
+    # variant('ipywidgets',     default=False,  description='Enable with support')  # NOQA: ignore=E501
+    # variant('ipyparallel',    default=False,  description='Enable with support')  # NOQA: ignore=E501
     variant('jupyter_console', default=True, description='Enable console support')
 
     # (Anecdotal) List of sources required to install Jupyer:
