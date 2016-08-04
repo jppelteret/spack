@@ -26,7 +26,7 @@ from spack import *
 
 
 class PyJupyterConsole(Package):
-    """The Jupyter console is a terminal frontend for kernels using the Jupyter 
+    """The Jupyter console is a terminal frontend for kernels using the Jupyter
     protocol."""
 
     homepage = "http://jupyter.org/"

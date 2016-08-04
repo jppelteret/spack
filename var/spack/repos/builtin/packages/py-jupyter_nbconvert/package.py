@@ -26,10 +26,10 @@ from spack import *
 
 
 class PyJupyterNbconvert(Package):
-    """The nbconvert tool allows you to convert a Jupyter .ipynb notebook 
-    document file into another static format including HTML, LaTeX, PDF, 
+    """The nbconvert tool allows you to convert a Jupyter .ipynb notebook
+    document file into another static format including HTML, LaTeX, PDF,
     Markdown, reStructuredText, and more."""
-    
+
     homepage = "http://jupyter.org/"
     url      = "https://github.com/jupyter/nbconvert/archive/4.2.0.tar.gz"
 

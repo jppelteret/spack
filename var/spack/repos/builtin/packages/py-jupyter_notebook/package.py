@@ -27,10 +27,11 @@ import subprocess
 
 
 class PyJupyterNotebook(Package):
-    """A web application that allows you to create and share documents that contain live code, 
-    equations, visualizations and explanatory text. Uses include: data cleaning and 
-    transformation, numerical simulation, statistical modeling, machine learning and much more."""
-    
+    """A web application that allows you to create and share documents that
+    contain live code, equations, visualizations and explanatory text. Uses
+    include: data cleaning and transformation, numerical simulation,
+    statistical modeling, machine learning and much more."""
+
     homepage = "http://jupyter.org/"
     url      = "https://github.com/jupyter/notebook/archive/4.2.1.tar.gz"
 
@@ -46,16 +47,17 @@ class PyJupyterNotebook(Package):
 
     # (Anecdotal) List of sources required to install Jupyer:
     # http://simnotes.github.io/blog/installing-jupyter-on-hdp-2.3.2/
-    # 
 
     def cmd_exists(cmd):
-      try:
-          subprocess.check_output(["which", cmd])
-          return True
-      except subprocess.CalledProcessError as ex:
-          return False
+        try:
+            subprocess.check_output(["which", cmd])
+            return True
+        except subprocess.CalledProcessError:
+            return False
 
-    if (cmd_exists("bower") == False & cmd_exists("npm") == False & cmd_exists("node") == False):
+    if (cmd_exists("bower") is False &
+       cmd_exists("npm") is False &
+       cmd_exists("node") is False):
         depends_on('node-js',   type='build')
         depends_on('npm',       type='build')
 
@@ -85,4 +87,4 @@ class PyJupyterNotebook(Package):
     # invoked from within the setup script. But as a fall-back npm is installed
     # and will be called if Bower is not present on the system...
     def install(self, spec, prefix):
-      python('setup.py', 'install', '--prefix={0}'.format(prefix))
+        python('setup.py', 'install', '--prefix={0}'.format(prefix))
