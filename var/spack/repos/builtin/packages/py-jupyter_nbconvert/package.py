@@ -35,8 +35,9 @@ class PyJupyterNbconvert(Package):
 
     version('4.2.0', '8bd88771cc00f575d5edcd0b5197f964')
 
-    extends('python')
+    depends_on('python@2.7:2.8,3.3:')
     depends_on('py-pycurl', type='build')
+    depends_on('py-jupyter_core')
 
     def install(self, spec, prefix):
         python('setup.py', 'install', '--prefix={0}'.format(prefix))

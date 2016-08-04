@@ -33,7 +33,8 @@ class PyJupyterNbformat(Package):
 
     version('4.0.1', 'ab7172e517c9d561c0c01eef5631b4c8')
 
-    extends('python')
+    depends_on('python@2.7:2.8,3.3:')
+    depends_on('py-jupyter_core')
 
     def install(self, spec, prefix):
         python('setup.py', 'install', '--prefix={0}'.format(prefix))

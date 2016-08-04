@@ -27,7 +27,7 @@ from spack import *
 
 class PyJupyterConsole(Package):
     """The Jupyter console is a terminal frontend for kernels using the Jupyter 
-    protocol.."""
+    protocol."""
 
     homepage = "http://jupyter.org/"
     url      = "https://github.com/jupyter/jupyter_console/archive/5.0.0.tar.gz"
@@ -37,8 +37,9 @@ class PyJupyterConsole(Package):
     version('4.1.0', '9c655076262760bdbeeada9d7f586237')
     version('4.0.3', '0e928ea261e7f8154698cf69ed4f2459')
 
-    extends('python@2.7:2.8,3.3:')
+    depends_on('python@2.7:2.8,3.3:')
     depends_on('py-jupyter_core')
+    depends_on('py-jupyter_client')
 
     def install(self, spec, prefix):
         python('setup.py', 'install', '--prefix={0}'.format(prefix))

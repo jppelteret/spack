@@ -34,7 +34,7 @@ class PyJupyterCore(Package):
     version('4.1.0', 'b7e928f965f68aef13fea1bf9d6384aa')
     version('4.0.6', '50a73c3a4a8ed047a3674d2b5274cc3b')
 
-    extends('python@2.7:2.8,3.3:')
+    depends_on('python@2.7:2.8,3.3:')
     depends_on('py-setuptools', type='build')
 
     def install(self, spec, prefix):
