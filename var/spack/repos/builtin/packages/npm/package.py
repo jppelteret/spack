@@ -33,7 +33,7 @@ class Npm(Package):
     url      = "https://registry.npmjs.org/npm/-/npm-3.10.5.tgz"
 
     version('3.10.5', '46002413f4a71de9b0da5b506bf1d992')
-    
+
     depends_on('node-js', type='build')
 
     def install(self, spec, prefix):
