@@ -38,18 +38,18 @@ class Clang(Compiler):
     cxx_names = ['clang++']
 
     # Subclasses use possible names of Fortran 77 compiler
-    f77_names = []
+    f77_names = ['gfortran']
 
     # Subclasses use possible names of Fortran 90 compiler
-    fc_names = []
+    fc_names = ['gfortran']
 
     # Named wrapper links within spack.build_env_path
     link_paths = {'cc': 'clang/clang',
                   'cxx': 'clang/clang++',
                   # Use default wrappers for fortran, in case provided in
                   # compilers.yaml
-                  'f77': 'f77',
-                  'fc': 'f90'}
+                  'f77': 'clang/gfortran',
+                  'fc': 'clang/gfortran'}
 
     @property
     def is_apple(self):
