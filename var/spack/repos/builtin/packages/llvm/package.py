@@ -74,13 +74,15 @@ class Llvm(Package):
 
     # Build dependency
     depends_on('cmake@2.8.12.2:', type='build')
+    depends_on('swig')
+    #depends_on('libedit')
 
     # Universal dependency
     depends_on('python@2.7:2.8')  # Seems not to support python 3.X.Y
 
     # lldb dependencies
     depends_on('ncurses', when='+lldb')
-    depends_on('swig', when='+lldb')
+    #depends_on('swig', when='+lldb')
     depends_on('libedit', when='+lldb')
 
     # gold support
@@ -156,6 +158,21 @@ class Llvm(Package):
                 'llvm-libunwind': 'http://llvm.org/svn/llvm-project/libunwind/trunk',
                 }
             },
+            {
+                'version': '4.0.0',
+                'md5': 'ea9139a604be702454f6acf160b4f3a2',
+                'resources': {
+                    'compiler-rt': '2ec11fb7df827b086341131c5d7f1814',
+                    'openmp': '3d06d2801dd4808f551a1a70068e01f5',
+                    'polly': 'f36e4e7cf872f8b3bbb9cdcddc5fd964',
+                    'libcxx': '4cf7df466e6f803ec4611ee410ff6781',
+                    'libcxxabi': '8b5d7b9bfcf7dec2dc901c8a6746f97c',
+                    'cfe': '756e17349fdc708c62974b883bf72d37',
+                    'clang-tools-extra': '99e711337ec3e9a8bb36e8dd62b2cd6e',
+                    'lldb': 'bd41ba7fcca55d2a554409bbccd34d2d',
+                    'llvm-libunwind': '0c3534eaa11c0cae33a1dcf5f36ce287',
+                    }
+                },
             {
                 'version': '3.9.0',
                 'md5': 'f2093e98060532449eb7d2fcfd0bc6c6',
@@ -298,12 +315,14 @@ class Llvm(Package):
         if '+polly' in spec:
             cmake_args.append('-DLINK_POLLY_INTO_TOOLS:Bool=ON')
         else:
-            cmake_args.append('-DLLVM_EXTERNAL_POLLY_BUILD:Bool=OFF')
+            cmake_args.extend(['-DLLVM_TOOL_POLLY_BUILD:Bool=OFF',
+                               '-DLLVM_POLLY_BUILD:Bool=OFF',
+                               '-DLLVM_POLLY_LINK_INTO_TOOLS:Bool=OFF'])
 
         if '+clang' not in spec:
             cmake_args.append('-DLLVM_EXTERNAL_CLANG_BUILD:Bool=OFF')
         if '+lldb' not in spec:
-            cmake_args.append('-DLLVM_EXTERNAL_LLDB_BUILD:Bool=OFF')
+            cmake_args.append('-DLLVM_TOOL_LLDB_BUILD:Bool=OFF')
         if '+internal_unwind' not in spec:
             cmake_args.append('-DLLVM_EXTERNAL_LIBUNWIND_BUILD:Bool=OFF')
         if '+libcxx' not in spec:

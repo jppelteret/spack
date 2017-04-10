@@ -35,21 +35,24 @@ class Symengine(CMakePackage):
     version('0.2.0', '45401561add36a13c1f0b0c5f8d7422d')
     version('0.1.0', '41ad7daed61fc5a77c285eb6c7303425')
     version('develop', git='https://github.com/symengine/symengine.git')
+    #version('develop', git='https://github.com/jppelteret/symengine.git', branch='master')
 
     variant('boostmp',      default=False,
             description='Compile with Boost multi-precision integer library')
     variant('flint',        default=False,
             description='Compile with Flint integer library')
+    variant('llvm',         default=False,
+            description='Compile with LLVM JIT compiler support')
     variant('mpc',          default=True,
             description='Compile with MPC library')
     variant('mpfr',         default=True,
             description='Compile with MPFR library')
+    variant('openmp',       default=False,
+            description='Enable OpenMP support')
     variant('piranha',      default=False,
             description='Compile with Piranha integer library')
     variant('thread_safe',  default=True,
             description='Enable thread safety option')
-    variant('openmp',       default=False,
-            description='Enable OpenMP support')
     variant('shared',       default=True,
             description='Enables the build of shared libraries')
 
@@ -61,6 +64,7 @@ class Symengine(CMakePackage):
     # NOTE: [mpc,mpfr,flint,piranha] could also be built against mpir
     depends_on('boost',    when='+boostmp')
     depends_on('gmp',      when='~boostmp')
+    depends_on('llvm',     when='+llvm')
     depends_on('mpc',      when='+mpc~boostmp')
     depends_on('mpfr',     when='+mpfr~boostmp')
     depends_on('flint',    when='+flint~boostmp')
@@ -79,11 +83,14 @@ class Symengine(CMakePackage):
         options.extend([
             '-DCMAKE_BUILD_TYPE=Release',
             '-DWITH_SYMENGINE_RCP:BOOL=ON',
+            '-DWITH_COTIRE=OFF',
             '-DWITH_SYMENGINE_THREAD_SAFE:BOOL=%s' % (
                 'ON' if ('+thread_safe' or '+openmp') in spec else 'OFF'),
             '-DBUILD_TESTS:BOOL=%s' % (
                 'ON' if self.run_tests else 'OFF'),
             '-DBUILD_BENCHMARKS:BOOL=ON',
+            '-DWITH_LLVM:BOOL=%s' % (
+                'ON' if '+llvm' in spec else 'OFF'),
             '-DWITH_OPENMP:BOOL=%s' % (
                 'ON' if '+openmp' in spec else 'OFF'),
             '-DBUILD_SHARED_LIBS:BOOL=%s' % (

@@ -38,6 +38,7 @@ class Swig(AutotoolsPackage):
     homepage = "http://www.swig.org"
     url      = "http://prdownloads.sourceforge.net/swig/swig-3.0.8.tar.gz"
 
+    version('3.0.12', '82133dfa7bba75ff9ad98a7046be687c')
     version('3.0.11', '13732eb0f1ab2123d180db8425c1edea')
     version('3.0.10', 'bb4ab8047159469add7d00910e203124')
     version('3.0.8', 'c96a1d5ecb13d38604d7e92148c73c97')
@@ -47,3 +48,5 @@ class Swig(AutotoolsPackage):
     version('1.3.40', '2df766c9e03e02811b1ab4bba1c7b9cc')
 
     depends_on('pcre')
+    
+    build_directory = 'spack-build'
